@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Quiz</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <h1>Quiz Time</h1>
+
+    <div class="container">
+        <select id="selected-category"></select>
+        <p id="fact"></p>
+    </div>
+
+    <script>
+        var quizApi = "https://opentdb.com/api.php";
+        var quizCategories = "https://opentdb.com/api_category.php";
+        var quizCount = "https://opentdb.com/api_count.php";
+
+        function sendRequest() {
+            $.ajax({
+                url: quizCategories
+            }).then(showCategories);
+        }
+
+        function showCategories(data) {
+            data.trivia_categories.forEach(function (cat) {
+                $('#selected-category').append('<option value="' + cat.id + '">' + cat.name + '</option>');
+            });
+        }
+
+        sendRequest();
+
+        $('#selected-category').change(funFact);
+
+        function funFact() {
+            $('#fact').text('');
+
+            var catData = {
+                category: $('#selected-category').val()
+            };
+
+            $.ajax({
+                url: quizCount,
+                data: catData
+            }).then(showFact);
+        }
+
+        function showFact(data) {
+            var count = data.category_question_count.total_question_count;
+            $('#fact').text('There are ' + count + ' questions in this category!');
+        }
+    </script>
+</body>
+
+</html>

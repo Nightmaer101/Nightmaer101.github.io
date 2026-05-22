@@ -1,0 +1,64 @@
+body {
+  font-family: "Manrope", sans-serif;
+  background-color: #e2edc2;
+  background-position: top;
+  color: black;
+  font-size: 20px;
+  font-weight: 600;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+h1 {
+  color: white;
+  background-color: black;
+  font-size: 72px;
+}
+
+.container {
+  border-radius: 24px;
+  background-color: black;
+  color: white;
+  margin: 30px auto;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+}
+
+button {
+  font-size: 18px;
+  background-color: black;
+  color: white;
+  margin-top: 20px;
+  padding: 20px 60px;
+  border: 0;
+  border-radius: 7px;
+  font-family: inherit;
+  font-weight: inherit;
+  cursor: pointer;
+}
+
+#ques {
+  font-size: 28px;
+  margin: 0;
+}
+
+.answer-options {
+  background-color: #e2edc2;
+  width: 350px;
+  padding: 20px;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: 0.2s all ease;
+  color: black;
+  font-weight: 800;
+  display: block;
+}
+
+.answer-options:hover {
+  background-color: #fcddaf;
+}
