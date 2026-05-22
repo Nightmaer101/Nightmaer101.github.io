@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cat or Dog Quiz</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <img src="dog-cat.png">
+    <button id="start-btn">Start Quiz</button>
+
+    <div class="container" id="quiz">
+        <p id="score-text"></p>
+        <p id="ques"></p>
+        <div id="choices"></div>
+    </div>
+
+    <script>
+        var dogAPI = "https://dog-facts-api.apps.codewizardshq.com/facts";
+        var catAPI = "https://cat-facts-api.apps.codewizardshq.com/fact";
+
+        var api;
+        var random;
+
+        $('#quiz').hide();
+
+        function randomAPI() {
+            api = dogAPI;
+            random = Math.random();
+            if (random >= 0.5) {
+                api = catAPI;
+            }
+        }
+
+        function sendRequest() {
+            $('#start-btn').hide();
+            $('#quiz').show();
+            randomAPI();
+            $.ajax({
+                url: api
+            }).then(showFact);
+        }
+
+        function showFact(response) {
+            console.log(response);
+        }
+
+        $('#start-btn').click(sendRequest);
+    </script>
+</body>
+
+</html>
